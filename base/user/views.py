@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 def index(request):
     context = {}
-    return render(request, 'user/index.html')
+    return render(request, 'user/index.html', context)
 
 def loginUser(request):
 
@@ -29,11 +30,22 @@ def loginUser(request):
 
 
     context = {}
-    return render(request, 'user/index.html')
+    return render(request, 'user/index.html', context)
 
 def registerUser(request):
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            login(request, user)
+            redirect('restaraunts')
+        else:
+            messages.error(request, 'Ошибка при регистрации')
+
     context = {}
-    return render(request, 'index.html')
+    return redirect('index')
 
 def logoutUser(request):
     logout(request)

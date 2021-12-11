@@ -1,5 +1,12 @@
 <div>
-    <form>
+    <form method="POST" action="../register/">
         {% csrf_token %}
+        <label >Логин:</label>
+        <input name="username" type="login">
+        <label >Пароль:</label>
+        <input name="password1" type="password">
+        <label >Повторите пароль:</label>
+        <input name="password2" type="password">
+        <button type="submit">Зарег</button>
     </form>
 </div>
