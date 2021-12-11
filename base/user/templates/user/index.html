@@ -1,5 +1,41 @@
 {% extends '_base.html' %}
-
+{% load static %}
+{% block main %}
+<main class="main main-face">
+{% endblock %}
 {% block content %}
-{% include '_nav.html' %}
+
+<div class="container">
+    <div class="header">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-3">
+                <div class="logo">
+                    <img src="../static/img/logo.svg" alt="logo" />
+                    <span class="logo-wrapper-white">CHECK<br />EAT</span>
+                </div>
+            </div>
+            {% include '_nav.html' %}d
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="header-tag">
+                <h1>Выберите ресторан и забронируйте столик!</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-lg-3 offset-lg-0 col-md-6 col-sm-8 col-8 offset-md-0 ">
+            <a href="{% url 'restaraunts' %}"><button class="face-btn main-btn">Забронировать</button></a>
+        </div>
+        <div class="col-lg-3 offset-lg-0 col-md-6 col-sm-8 col-8 offset-md-0">
+            <button class="face-btn main-btn">Я в ресторане</button>
+        </div>
+        <div class="col-lg-3 offset-lg-0 col-md-6 col-sm-8 col-8 offset-md-0">
+            <button class="face-btn main-btn popup-link login">Я ресторатор</button>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

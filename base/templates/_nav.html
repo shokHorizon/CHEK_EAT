@@ -1,7 +1,18 @@
 {% if request.user.is_authenticated %}
-<a href="{% url 'restaraunts' %}">Ваши рестораны</a>
-<a href="{% url 'logout' %}">Выйти</a>
+<div class="col-lg-2 offset-lg-6 col-md-2 offset-md-4 col-sm-3 offset-sm-3 col-12">
+    <div class="popup-link">Рестораны</div>
+</div>
+<div class="col-lg-1 col-md-2 col-sm-2 col-12">
+    <div class="popup-link">CRM</div>
+</div>
+<div class="col-lg-1 col-md-2 col-sm-2 col-12">
+    <div class="popup-link">Выход</div>
+</div>
 {% else %}
-{% include 'user/_login.html' %}
-{% include 'user/_register.html' %}
+<div class="col-lg-1 offset-lg-7 col-md-2 col-sm-2 col-2 offset-md-5 offset-sm-5 offset-3">
+    <div class="popup-link login">Войти</div>
+</div>
+<div class="col-lg-1 col-md-2 col-sm-2 col-2">
+    <div class="popup-link registration">Регистрация</div>
+</div>
 {% endif %}

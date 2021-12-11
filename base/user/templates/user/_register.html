@@ -1,12 +1,32 @@
-<div>
-    <form method="POST" action="../register/">
-        {% csrf_token %}
-        <label >Логин:</label>
-        <input name="username" type="login">
-        <label >Пароль:</label>
-        <input name="password1" type="password">
-        <label >Повторите пароль:</label>
-        <input name="password2" type="password">
-        <button type="submit">Зарег</button>
-    </form>
+<div class="popup popup-registration">
+    <div class="popup-dialog">
+        <div class="popup-content popup-content-registration">
+            <button class="popup-close">&times;</button>
+            <h2 class="form-header">Регистрация</h2>
+            <div class="form popup-form">
+                <form method="POST" action="../register/">
+                    {% csrf_token %}
+                    <div class="form-wrapper">
+                        <div class="register-wrap">
+                            <div class="item-wrap">
+                                <label for="#">Логин:</label>
+                                <input name="username" type="text" class="form-input-mg">
+                            </div>
+                        </div>
+                        <div class="register-wrap">
+                            <div class="item-wrap">
+                                <label for="#">Пароль:</label>
+                                <input name="password1" type="password" class="form-input-mg">
+                            </div>
+                            <div class="item-wrap">
+                                <label for="#">Повторите пароль:</label>
+                                <input name="password2" type="password" class="form-input-mg">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn form-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

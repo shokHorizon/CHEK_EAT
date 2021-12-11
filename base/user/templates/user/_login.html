@@ -1,8 +1,18 @@
-<form method="POST" id="signin-form" action="../login/">
-    {% csrf_token %}
-    <label >Почта:</label>
-    <input name="username" type="login">
-    <label >Пароль:</label>
-    <input name="password" type="password">
-    <button type="submit">Войти</button>
-</form>
+<div class="popup popup-login">
+    <div class="popup-dialog">
+        <div class="popup-content popup-content-login">
+            <button class="popup-close">&times;</button>
+            <h2 class="form-header">Вход</h2>
+            <div class="form popup-form">
+                <form method="POST" id="signin-form" action="../login/">
+                    {% csrf_token %}
+                    <label for="#">Логин:</label>
+                    <input name="username" type="text" class="form-input-mg">
+                    <label for="#">Пароль:</label>
+                    <input name="password" type="password" class="form-input-mg">
+                    <button type="submit" class="main-btn form-btn">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
