@@ -1,0 +1,8 @@
+<form method="POST" id="signin-form" action="../login/">
+    {% csrf_token %}
+    <label >Почта:</label>
+    <input name="username" type="login">
+    <label >Пароль:</label>
+    <input name="password" type="password">
+    <button type="submit">Войти</button>
+</form>

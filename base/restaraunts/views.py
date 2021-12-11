@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def restaraunts(request):
+    return render(request, 'restaraunts/restaraunts.html')
