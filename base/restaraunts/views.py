@@ -159,8 +159,7 @@ def get_tables(request, pk):
             rest = rest.get()
             tabletypes = rest.tabletype_set.all()
             for tabletype in tabletypes:
-                tables = tabletype.table_set.all()
-                tabletimes = [(table.id, table.bookedTime) for table in tables]
+                #tabletimes = [(table.id, table.bookedTime) for table in tables]
 
                 context[tabletype.id] = {
                     'start': rest.open_time,
@@ -168,10 +167,33 @@ def get_tables(request, pk):
                     'book_every': rest.book_every,
                     'name': tabletype.name,
                     'persons': tabletype.persons,
-                    'tables': tabletimes,
                 }
         else:
             context={'error': 'Restaurant does not exist'}
             return JsonResponse(context)
+
+    return JsonResponse(context)
+
+def get_free_time(request, pk):
+    context = {}
+
+    if request.method=="GET":
+        tabletype = TableType.objects.filter(id=pk)
+        if any(tabletype):
+            tabletype = tabletype.get()
+            rest = tabletype.restaurant
+            opened_time = rest.close_time - rest.open_time
+            if opened_time != 0:
+                times_available = opened_time * 60 / rest.book_every
+                #free_time = (False] * times_available
+                tabletypes = rest.tabletype_set.all()
+                for tabletype in tabletypes:
+                    pass
+                    #tabletimes = [(table.id, table.bookedTime) for table in tables]
+
+            else:
+                context = {'error': "Restaurant working 0 HOURS!"}
+        else:
+            context={'error': 'Table does not exist'}
 
     return JsonResponse(context)

@@ -262,7 +262,7 @@ ul {
 }
 
 .restaurant-description {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1rem;
 }
 
@@ -573,6 +573,48 @@ ul {
   color: var(--green);
 }
 
+/* калькулятор */
+.amount {
+  display: inline-block;
+}
+
+.dish-p {
+  display: inline-block;
+}
+
+.confirm-wrapper {
+  width: 50%;
+}
+
+.dish {
+  display: inline-block;
+}
+
+.price {
+  display: inline-block;
+}
+
+.form-order-info {
+  display: inline-block;
+}
+
+.amount span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #ededed;
+  cursor: pointer;
+  text-align: center;
+}
+
+.amount span:hover {
+  background: #dfdfdf;
+}
+
+.amount input {
+  width: 30px;
+  text-align: center;
+}
 
 @media (max-width: 1200px) {
   .popup-content-registration {
@@ -624,6 +666,10 @@ ul {
 
   .popup-content-confirm-book {
     width: 70%;
+  }
+
+  .confirm-wrapper {
+    width: 100%;
   }
 
   .btn-wrapper {

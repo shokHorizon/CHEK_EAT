@@ -28,13 +28,8 @@ const openModal = () => {
             target.closest('.popup').style.display = 'none';
         }
 
-        if(target.closest('.book-popup-btn') || target.closest('.confirm-book-btn')){
-            bookPopup.style.display = 'block';
-        }
-
         if(target.closest('.a-book')){
             e.preventDefault();
-            target.closest('.popup').style.display = 'none';
             phonePopup.style.display = 'block';
         }
     })
