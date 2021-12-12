@@ -12,6 +12,9 @@ def restaraunts(request):
 
     return render(request, 'restaraunts/restaraunts.html', context)
 
+def waiter(request):
+    context = {}
+    return render(request, 'restaraunt/waiter.html', context)
 
 @csrf_protect
 def create_restaraunt(request):

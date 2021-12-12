@@ -8,9 +8,7 @@ def index(request):
     context = {}
     return render(request, 'user/index.html', context)
 
-def waiter(request):
-    context = {}
-    return render(request, 'user/waiter.html', context)
+
 
 def loginUser(request):
 
