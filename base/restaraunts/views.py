@@ -219,7 +219,7 @@ def get_end_time(request, pk, chosen_time):
             rest = tabletype.restaurant
             opened_time = rest.close_time - rest.open_time
             if opened_time != 0:
-                times_available = (opened_time * 60) // rest.book_every
+                times_available = opened_time * (60 // rest.book_every)
                 tables = tabletype.table_set.all()
                 max_queue = 0
                 max_id = 0
@@ -232,7 +232,7 @@ def get_end_time(request, pk, chosen_time):
                             max_queue = chosen_time - i
                             max_id = table.id
 
-                context = {'time': res}
+                context = {'time': chosen_time, 'sequence': max_queue, 'id': max_id}
 
             else:
                 context = {'error': "Restaurant working 0 HOURS!"}
