@@ -192,7 +192,7 @@ def get_free_time(request, pk):
                 for i in tables:
                     free_time = free_time & i.bookedTime
 
-                res = [False]*32
+                res = [False]*times_available
 
                 for i in range(times_available):
                     if 2**i & free_time:
