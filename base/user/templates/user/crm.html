@@ -1,0 +1,81 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="header">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                <div class="logo">
+                    <img src="img/logo.svg" alt="logo" />
+                    <span class="logo-wrapper">CHECK<br />EAT</span>
+                </div>
+            </div>
+            {% include '_nav.html' %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+        <div class="filter">
+            <p>Фильтр:</p>
+            <form>
+                <input type="text" placeholder="Имя клиента или телефон">
+                <button type="submit"></button>
+            </form>
+        </div>
+        <div class="checkboxes">
+            <form>
+                <input type="checkbox" class="custom-checkbox" id="visited" name="visited" value="yes">
+                <label for="visited">Посетили</label>
+                <input type="checkbox" class="custom-checkbox" id="will" name="will" value="yes">
+                <label for="will">Посетят</label>
+            </form>
+        </div>
+        </div>
+        <div class="col-lg-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Номер телефона</th>
+                        <th>Время брони <br>с __ по __</th>
+                        <th>Количество посещений</th>
+                        <th>Потратил</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Вася Пупкинс</td>
+                        <td>+7(913)456-32-11</td>
+                        <td>12:00</td>
+                        <td>2</td>
+                        <td>2100р</td>
+                    </tr>
+                    <tr>
+                        <td>Вася Пупкинс</td>
+                        <td>+7(913)456-32-11</td>
+                        <td>12:00</td>
+                        <td>2</td>
+                        <td>2100р</td>
+                    </tr>
+                    <tr>
+                        <td>Вася Пупкинс</td>
+                        <td>+7(913)456-32-11</td>
+                        <td>12:00</td>
+                        <td>2</td>
+                        <td>2100р</td>
+                    </tr>
+                    <tr>
+                        <td>Вася Пупкинс</td>
+                        <td>+7(913)456-32-11</td>
+                        <td>12:00</td>
+                        <td>2</td>
+                        <td>2100р</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
