@@ -616,6 +616,10 @@ ul {
   text-align: center;
 }
 
+.a-book {
+  cursor: pointer;
+}
+
 @media (max-width: 1200px) {
   .popup-content-registration {
     width: 80%;

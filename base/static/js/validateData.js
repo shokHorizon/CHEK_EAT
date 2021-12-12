@@ -36,7 +36,7 @@ const validateData = (f) => {
             if(item.value === ''){
                 item.classList.add('invalid');
                 alert('Поле не может быть пустым!');
-                return false
+                return false;
             } else {
                 item.classList.remove('invalid');
             }

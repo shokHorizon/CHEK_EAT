@@ -2,7 +2,7 @@
 
 const confirmBook = () => {
 
-    let places, newData, placeArray, array = [1,2,3,4,5,6,7];
+    let places, newData, placeArray;
     let dataWrapper = document.createElement('div');
         dataWrapper.className = 'data-wrapper';
     const availableTime = document.querySelector('.available-time');
@@ -12,7 +12,7 @@ const confirmBook = () => {
     return response.json();
     })
     .then((data) => {
-        newData = data;
+        newData = data; //объект с типами столиков
     });
 
     fetch('http://mymem.space/restaraunts/get_free_time/1')
@@ -20,20 +20,20 @@ const confirmBook = () => {
     return response.json();
     })
     .then((data) => {
-        placeArray = data;
+        placeArray = data; //массив свободных мест
     });
 
     document.addEventListener('click', e => {
-        let target = e.target, timeItem, arr;
+        let target = e.target, timeItem;
 
         if(newData && target.matches('.first') && target.closest('.available-seats').querySelector('input').value === 'in'){
             availableTime.innerHTML = '';
             dataWrapper.innerHTML = '';
 
-            console.log(placeArray);
+            console.log(placeArray['time']);
             places = newData[1]
             
-            array.forEach(item => {
+            placeArray['time'].forEach(item => {
                 
                 timeItem = document.createElement('div');
                     timeItem.className = 'time-wrapper';
@@ -41,7 +41,6 @@ const confirmBook = () => {
                         <input type="radio" class="time-radio" name="time" value="out">
                         <label for="time-radio" class="">${item}</label>
                     `
-                console.log(timeItem)
                 dataWrapper.append(timeItem);
             })
             availableTime.append(dataWrapper)
@@ -53,8 +52,7 @@ const confirmBook = () => {
 
             places = newData[2];
 
-            array.forEach(item => {
-                
+            placeArray['time'].forEach(item => {
                 timeItem = document.createElement('div');
                     timeItem.className = 'time-wrapper';
                     timeItem.innerHTML = `
@@ -65,7 +63,6 @@ const confirmBook = () => {
                 dataWrapper.append(timeItem);
             })
             availableTime.append(dataWrapper)
-            console.log(places);
         }
     })
 }
