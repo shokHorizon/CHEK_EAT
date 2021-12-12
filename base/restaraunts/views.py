@@ -149,6 +149,7 @@ def update_restaraunt(request, pk):
 
     return render(request, 'restaraunts/create.html', context)
 
+
 def get_tables(request, pk):
     context = {}
 

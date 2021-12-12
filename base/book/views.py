@@ -8,9 +8,9 @@ def booking(request):
     return render(request, 'book/booking.html', context)
 
 
-def book(request):
+def book(request, pk):
     return render(request, 'book/book.html')
+
 
 def confirm(request):
     pass
-
