@@ -1,0 +1,7 @@
+'use strict';
+
+changeMenu =() => {
+
+}
+
+changeMenu();
