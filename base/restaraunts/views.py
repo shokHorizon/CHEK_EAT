@@ -192,7 +192,9 @@ def get_free_time(request, pk):
                 for i in tables:
                     free_time = free_time & i.bookedTime
 
-                res = [False]*times_available
+                res = []
+                for i in range(rest.open_time*60, rest.close_time*60, rest.book_every):
+                    res.append(f'{i//60}:{i%60}')
 
                 for i in range(times_available):
                     if 2**i & free_time:
@@ -208,6 +210,7 @@ def get_free_time(request, pk):
             context={'error': 'Table does not exist'}
 
     return JsonResponse(context)
+
 
 def get_end_time(request, pk, chosen_time):
     context = {}
@@ -241,3 +244,9 @@ def get_end_time(request, pk, chosen_time):
             context={'error': 'Table does not exist'}
 
     return JsonResponse(context)
+
+
+def show_menu(request):
+    context = {}
+
+    return render(request, 'restaraunts/menu.html', context)
