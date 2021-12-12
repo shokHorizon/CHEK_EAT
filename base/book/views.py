@@ -9,7 +9,7 @@ def booking(request):
 
 
 def book(request):
-    pass
+    return render(request, 'book/book.html')
 
 def confirm(request):
     pass

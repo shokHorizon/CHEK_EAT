@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from .models import Restaraunt, TableType, Table
+from django.http import JsonResponse
+
 
 def restaraunts(request):
     context = {}
@@ -9,6 +11,7 @@ def restaraunts(request):
         context={'restaurants': Restaraunt.objects.filter(owner=request.user)}
 
     return render(request, 'restaraunts/restaraunts.html', context)
+
 
 @csrf_protect
 def create_restaraunt(request):
@@ -145,3 +148,29 @@ def update_restaraunt(request, pk):
 
 
     return render(request, 'restaraunts/create.html', context)
+
+def get_tables(request, pk):
+    context = {}
+
+    if request.method=="GET":
+        rest = Restaraunt.objects.filter(id=pk)
+        if any(rest):
+            rest = rest.get()
+            tabletypes = rest.tabletype_set.all()
+            for tabletype in tabletypes:
+                tables = tabletype.table_set.all()
+                tabletimes = [(table.id, table.bookedTime) for table in tables]
+
+                context[tabletype.id] = {
+                    'start': rest.open_time,
+                    'end': rest.close_time,
+                    'book_every': rest.book_every,
+                    'name': tabletype.name,
+                    'persons': tabletype.persons,
+                    'tables': tabletimes,
+                }
+        else:
+            context={'error': 'Restaurant does not exist'}
+            return JsonResponse(context)
+
+    return JsonResponse(context)

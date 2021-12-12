@@ -38,8 +38,8 @@
             <p class="phone-number">+{{ restaurant.phone }}</p>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12 col-12 btn-wrapper align-self-end">
-            <button type="submit" class="main-btn list-btn">Меню</button>
-            <button type="submit" class="main-btn list-btn">Забронировать</button>
+            <button type="submit" class="main-btn list-btn open-menu">Меню</button>
+            <a href="book/{{ restaurant.id }}"><button type="submit" class="main-btn list-btn confirm-book-btn">Подтвердить бронь</button></a>
         </div>
     </div>
     {% endfor %}
