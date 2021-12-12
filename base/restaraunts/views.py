@@ -174,6 +174,7 @@ def get_tables(request, pk):
 
     return JsonResponse(context)
 
+
 def get_free_time(request, pk):
     context = {}
 
@@ -184,16 +185,59 @@ def get_free_time(request, pk):
             rest = tabletype.restaurant
             opened_time = rest.close_time - rest.open_time
             if opened_time != 0:
-                times_available = opened_time * 60 / rest.book_every
-                #free_time = (False] * times_available
-                tabletypes = rest.tabletype_set.all()
-                for tabletype in tabletypes:
-                    pass
-                    #tabletimes = [(table.id, table.bookedTime) for table in tables]
+                times_available = (opened_time * 60) // rest.book_every
+                tables = tabletype.table_set.all()
+
+                free_time = tables[0].bookedTime
+                for i in tables:
+                    free_time = free_time & i.bookedTime
+
+                res = [False]*32
+
+                for i in range(times_available):
+                    if 2**i & free_time:
+                        res[i] = True
+
+
+                context = {'time': res}
 
             else:
                 context = {'error': "Restaurant working 0 HOURS!"}
         else:
+            print(TableType.objects.first().id)
+            context={'error': 'Table does not exist'}
+
+    return JsonResponse(context)
+
+def get_end_time(request, pk, chosen_time):
+    context = {}
+
+    if request.method=="GET":
+        tabletype = TableType.objects.filter(id=pk)
+        if any(tabletype):
+            tabletype = tabletype.get()
+            rest = tabletype.restaurant
+            opened_time = rest.close_time - rest.open_time
+            if opened_time != 0:
+                times_available = (opened_time * 60) // rest.book_every
+                tables = tabletype.table_set.all()
+                max_queue = 0
+                max_id = 0
+
+                for table in tables:
+                    for i in range(chosen_time,-1,-1):
+                        if 2 ** i & table.bookedTime:
+                            break
+                        if max_queue < chosen_time - i:
+                            max_queue = chosen_time - i
+                            max_id = table.id
+
+                context = {'time': res}
+
+            else:
+                context = {'error': "Restaurant working 0 HOURS!"}
+        else:
+            print(TableType.objects.first().id)
             context={'error': 'Table does not exist'}
 
     return JsonResponse(context)
