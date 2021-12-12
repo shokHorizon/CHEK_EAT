@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<div class="main main-admin">
+        <div class="container">
+            <div class="header">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <div class="logo">
+                            <img src="{% static 'img/logo.svg' %}" alt="logo" />
+                            <span class="logo-wrapper">CHECK<br />EAT</span>
+                        </div>
+                    </div>
+                    {% include '_nav.html' %}
+                </div>
+            </div>
+
+            <div class="order-container row justify-content-start">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

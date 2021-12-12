@@ -8,6 +8,10 @@ def index(request):
     context = {}
     return render(request, 'user/index.html', context)
 
+def waiter(request):
+    context = {}
+    return render(request, 'user/waiter.html', context)
+
 def loginUser(request):
 
     if request.method == 'POST':
@@ -51,3 +55,9 @@ def logoutUser(request):
     logout(request)
     context = {}
     return redirect('index')
+
+
+def crm(request):
+    context = {}
+    return render(request, 'user/crm.html', context)
+
