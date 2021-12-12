@@ -194,7 +194,8 @@ def get_free_time(request, pk):
 
                 res = []
                 for i in range(rest.open_time*60, rest.close_time*60, rest.book_every):
-                    res.append(f'{i//60}:{i%60}')
+                    minutes = i%60 if i%60 >= 10 else '0' + str(i%60)
+                    res.append(f'{i//60}:{minutes}')
 
                 for i in range(times_available):
                     if 2**i & free_time:
