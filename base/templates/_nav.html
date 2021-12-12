@@ -1,12 +1,12 @@
 {% if request.user.is_authenticated %}
 <div class="col-lg-2 offset-lg-6 col-md-2 offset-md-4 col-sm-3 offset-sm-3 col-12">
-    <div class="popup-link">Рестораны</div>
+    <a href="{% url 'restaraunts' %}"><div class="popup-link">Рестораны</div></a>
 </div>
 <div class="col-lg-1 col-md-2 col-sm-2 col-12">
     <div class="popup-link">CRM</div>
 </div>
 <div class="col-lg-1 col-md-2 col-sm-2 col-12">
-    <div class="popup-link">Выход</div>
+    <a href="{% url 'logout' %}"><div class="popup-link">Выход</div></a>
 </div>
 {% else %}
 <div class="col-lg-1 offset-lg-7 col-md-2 col-sm-2 col-2 offset-md-5 offset-sm-5 offset-3">

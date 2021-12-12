@@ -1,0 +1,33 @@
+ <div class="popup popup-confirm-book">
+    <div class="popup-dialog">
+        <div class="popup-content popup-content-confirm-book">
+            <button class="popup-close">&times;</button>
+            <p class="">Для подтверждения брони укажите ваши данные</p>
+            <div class="form-confirm popup-form">
+                <form action="#" id="confirm-book" onsubmit="validateData(this);return false;">
+                    <input name="name" type="text" class="form-input" placeholder="Имя">
+                    <input name="phone" type="text" class="form-input" placeholder="Телефон">
+                    <div class="confirm-form-wrapper">
+                        <div class="available-time">
+                            <p>Доступное время:</p>
+
+                        </div>
+                        <div class="guests">
+                            <p class="inline-p align-left">Количество гостей:</p>
+                            <input type="text" name="guests" class="form-input-exact form-input-small" placeholder="12">
+                        </div>
+                        <div class="available-seats">
+                            <p>Доступные места:</p>
+                            <input type="radio" id="choice1" name="seat" value="in">
+                            <label for="choice1">В заведении</label>
+
+                            <input type="radio" id="choice2" name="seat" value="out">
+                            <label for="choice2">На улице</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn form-btn">Забронировать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

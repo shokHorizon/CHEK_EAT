@@ -19,6 +19,67 @@
                 <h4 class="form-header">Добавить заведение</h4>
                 <form method="POST" action="">
                     {% csrf_token %}
+                    {% if restaraunt %}
+                    <div class="create-wrapper">
+                        <label for="#">Название заведения</label>
+                        <input value="{{ restaraunt.name }}" name="title" type="text" class="form-input-mg">
+                        <label for="#">Адрес</label>
+                        <input value="{{ restaraunt.address }}" name="address" type="text" class="form-input-mg">
+                        <label for="#">Телефон</label>
+                        <input value="{{ restaraunt.phone }}" name="phone" type="phone" class="form-input-mg">
+
+                        <div class="work-time-wrapper row justify-content-between">
+                            <p class="col align-self-center">Часы работы:</p>
+                            <div class="work-time col align-self-end">
+                                <p class="inline-p">с:</p>
+                                <input value="{{ restaraunt.open_time }}" name="start" type="text" class="form-input-exact form-input-small" placeholder="12">
+                                <p class="inline-p">до:</p>
+                                <input value="{{ restaraunt.close_time }}" name="end" type="text" class="form-input-exact form-input-small" placeholder="12">
+                            </div>
+                        </div>
+
+                        <div class="places-wrapper row">
+                            <p class="col places-header">Возможные места:</p>
+                            {% for place in restaraunt.tabletype_set.all %}
+                            <div class="create-places">
+                                <div class="places-wrap-item row justify-content-between">
+                                    <p class="col align-self-center">Место:</p>
+                                    <div class="col align-self-end">
+                                        <input value="{{ place.name }}" name="place-location" type="text" class="form-input-exact" placeholder="Столик на улице">
+                                    </div>
+                                </div>
+
+                                <div class="places-wrap-item row justify-content-between">
+                                    <p class="col align-self-center">Стол рассчитан на:</p>
+                                    <div class="col align-self-end">
+                                        <input value="{{ place.persons }}" name="persons-number" type="text" class="form-input-exact" placeholder="12">
+                                    </div>
+                                </div>
+
+                                <div class="places-wrap-item  row justify-content-between">
+                                    <p class="col align-self-center">Количество столов:</p>
+                                    <div class="col align-self-end">
+                                        <input value="{{ place.table_set.count }}" name="tables-number" type="text" class="form-input-exact" placeholder="10">
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                            </div>
+                            {% endfor %}
+
+                            <button type="button" class="add-place designed-btn">
+                                <img src="/../static/img/add.svg" alt="+">
+                                <p>Добавить место</p>
+                            </button>
+
+                            <div class="add-photo">
+                                <p for="rest_pic">Прикрепить фото</p>
+                                <input type="file" id="rest_pic" name="rest_pic"
+                                    accept=".jpg, .jpeg, .png, .svg">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn form-btn">Обновить заведение</button>
+                    {% else %}
                     <div class="create-wrapper">
                         <label for="#">Название заведения</label>
                         <input name="title" type="text" class="form-input-mg">
@@ -77,6 +138,7 @@
                         </div>
                     </div>
                     <button type="submit" class="main-btn form-btn">Добавить заведение</button>
+                    {% endif %}
                 </form>
             </div>
         </div>

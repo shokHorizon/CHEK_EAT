@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <div class="col-lg-2 col-md-2 col-sm-4 col-6">
                 <div class="logo">
-                    <img src="../static/img/logo.svg" alt="logo" />
+                    <img src="{% static 'img/logo.svg' %}" alt="logo" />
                     <span class="logo-wrapper">CHECK<br />EAT</span>
                 </div>
             </div>
@@ -14,111 +14,44 @@
         </div>
     </div>
 
-    {% if request.user.is_authenticated %}
+
     <div class="row">
            <p class="list-header">Список ваших ресторанов:</p>
     </div>
+    {% for restaurant in restaurants %}
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-5 col-12 align-self-start">
-            <p class="restaurant-name">Проспект</p>
-            <small class="restaurant-change-btn">Изменить</small>
+            <p class="restaurant-name">{{restaurant.name}}</p>
+            <a href="{% url 'restaraunt_update' restaurant.id %}"><small class="restaurant-change-btn">Изменить</small></a>
+            <a href="{% url 'restaraunt_delete' restaurant.id %}"><small class="restaurant-change-btn">Удалить</small></a>
             <div class="align-self-end">
-                <img class="restaurant-photo " src="../static/img/restaurant1.svg" alt="restaurant">
+                <img class="restaurant-photo " src="{% static 'img/restaurant1.svg' %}" alt="restaurant">
             </div>
         </div>
 
         <div class="col-lg-3 col-md-3 col-sm-6 col-12 restaurant-description align-self-end">
             <p class="guests">Гостей: 12 из 52</p>
-            <p class="time">Время: с 10:00 до 23:00</p>
-            <p class="places">Места: в заведении 30, на улице 10</p>
-            <p class="adress">Пушкина 228</p>
-            <p class="phone-number">+7 (952) 234-01-22</p>
+            <p class="time">Время: с {{restaurant.open_time}} до {{restaurant.close_time}}</p>
+            <p class="places inline-p">Места:
+            {% for place in restaurant.tabletype_set.all %}
+                <p class="inline-p">&nbsp{{place.name}}: {{ place.table_set.count }}</p>
+            {% endfor %}
+            </p>
+            <p class="adress">{{restaurant.address}}</p>
+            <p class="phone-number">{{restaurant.phone}}</p>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-12 col-12 btn-wrapper align-self-end">
             <button type="submit" class="main-btn list-btn">Меню заведения</button>
         </div>
     </div>
+    {% endfor %}
     <a href="{% url 'restaraunt_create' %}">
     <button type="submit" class="add-restaurant designed-btn">
 
-            <img src="../static/img/add.svg" alt="+">
+            <img src="{% static 'img/add.svg' %}" alt="+">
             <p>Добавить заведение</p>
 
     </button>
     </a>
-    {% else %}
-    <div class="row">
-           <p class="list-header">Список ресторанов:</p>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-5 col-12 align-self-start">
-            <p class="restaurant-name">Проспект</p>
-            <div class="align-self-end">
-                <img class="restaurant-photo " src="../static/img/restaurant1.svg" alt="restaurant">
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-3 col-sm-6 col-12 restaurant-description align-self-end">
-            <p class="guests">Гостей: 12 из 52</p>
-            <p class="time">Время: с 10:00 до 23:00</p>
-            <p class="places">Места: в заведении 30, на улице 10</p>
-            <p class="adress">Пушкина 228</p>
-            <p class="phone-number">+7 (952) 234-01-22</p>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-12 col-12 btn-wrapper align-self-end">
-            <button type="submit" class="main-btn list-btn">Меню</button>
-            <button type="submit" class="main-btn list-btn">Подтвердить бронь</button>
-        </div>
-    </div>
-
-    <div class="popup popup-confirm-phone">
-        <div class="popup-dialog">
-            <div class="popup-content popup-content-confirm-phone">
-                <button class="popup-close">&times;</button>
-                <p class="">Введите телефон, указанный при бронировании.</p>
-                <div class="form-confirm popup-form">
-                    <form action="#">
-                        <input type="text" class="form-input" placeholder="Телефон">
-                        <button type="submit" class="main-btn form-btn">Показать меню</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup popup-confirm-book">
-        <div class="popup-dialog">
-            <div class="popup-content popup-content-confirm-book">
-                <button class="popup-close">&times;</button>
-                <p class="">Для подтверждения брони укажите ваши данные</p>
-                <div class="form-confirm popup-form">
-                    <form action="#">
-                        <input type="text" class="form-input" placeholder="Имя">
-                        <input type="text" class="form-input" placeholder="Телефон">
-                        <div class="confirm-form-wrapper">
-                            <div class="available-time">
-                                <p>Доступное время:</p>
-
-                            </div>
-                            <div class="guests">
-                                <p class="inline-p align-left">Количество гостей:</p>
-                                <input type="text" class="form-input-exact form-input-small" placeholder="12">
-                            </div>
-                            <div class="available-seats">
-                                <p>Доступные места:</p>
-                                <input type="radio" id="choice1" name="seat" value="in">
-                                <label for="choice1">В заведении</label>
-
-                                <input type="radio" id="choice2" name="seat" value="out">
-                                <label for="choice2">На улице</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="main-btn form-btn">Забронировать</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}

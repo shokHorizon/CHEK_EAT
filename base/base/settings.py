@@ -21,6 +21,7 @@ INSTALLED_APPS = [
 
     'user',
     'restaraunts',
+    'book',
 ]
 
 MIDDLEWARE = [

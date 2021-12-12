@@ -4,13 +4,13 @@
             <button class="popup-close">&times;</button>
             <h2 class="form-header">Регистрация</h2>
             <div class="form popup-form">
-                <form method="POST" action="../register/">
+                <form method="POST" action="{% url 'register' %}" id="signup-form" onsubmit="validateData(this);return false;">
                     {% csrf_token %}
                     <div class="form-wrapper">
                         <div class="register-wrap">
                             <div class="item-wrap">
                                 <label for="#">Логин:</label>
-                                <input name="username" type="text" class="form-input-mg">
+                                <input name="username" type="login" class="form-input-mg">
                             </div>
                         </div>
                         <div class="register-wrap">

@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="header">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                <div class="logo">
+                    <img src="{% static 'img/logo.svg' %}" alt="logo" />
+                    <span class="logo-wrapper">CHECK<br />EAT</span>
+                </div>
+            </div>
+            {% include '_nav.html' %}
+        </div>
+    </div>
+
+    <div class="row">
+           <p class="list-header">Список ресторанов:</p>
+    </div>
+    {% for restaurant in restaurants %}
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-5 col-12 align-self-start">
+            <p class="restaurant-name">{{ restaurant.name }}</p>
+            <div class="align-self-end">
+                <img class="restaurant-photo" src="{% static 'img/restaurant1.svg' %}" alt="restaurant">
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12 restaurant-description align-self-end">
+            <p class="guests">Гостей: 12 из 52</p>
+            <p class="time">Время: с {{ restaurant.open_time }} до {{ restaurant.close_time }}</p>
+            <p class="places">Места:
+                {% for place in restaurant.tabletype_set.all %}
+                    <p class="inline-p">&nbsp{{ place.name }}: {{ place.table_set.count }}</p>
+                {% endfor %}
+            </p>
+            <p class="adress">{{ restaurant.address }}</p>
+            <p class="phone-number">+{{ restaurant.phone }}</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 col-12 btn-wrapper align-self-end">
+            <button type="submit" class="main-btn list-btn">Меню</button>
+            <button type="submit" class="main-btn list-btn">Забронировать</button>
+        </div>
+    </div>
+    {% endfor %}
+    {% include 'book/_phone.html' %}
+    {% include 'book/_book.html' %}
+</div>
+{% endblock %}
